@@ -11,20 +11,10 @@ RSpec.feature "User edits an artist" do
 
     visit artist_path(jones.id)
     click_on "Edit"
-    fill_in "artist_name" with: "Bob Jones"
-    fill_in "artist_path" with: new_image
+    fill_in "artist_name", with: "Bob Jones"
+    fill_in "artist_image_path", with: new_image
     click_on "Update Artist"
     expect(page).to have_content "Bob Jones"
-    expect(page).to have_content new_image
-    expect(current_path).to eq artist_path(artist.id)
+    expect(page).to have_css("img[src=\"#{new_image}\"]")
   end
 end
-
-As a user
-Given that an artist exists in the database
-When I visit that artist's show page
-And I click on "Edit"
-And I fill in a new name
-And I click on "Update Artist"
-Then I should see the artist's updated name
-Then I should see the existing image
