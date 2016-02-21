@@ -13,7 +13,7 @@ FactoryGirl.define do
   end
 
   factory :song do
-   title
-   artist
- end
+    title
+    artist
+  end
 end
