@@ -8,7 +8,7 @@ class PlaylistsController < ApplicationController
   end
 
   def create
-    @playlist = Playlist.create(playlsit_params)
+    @playlist = Playlist.create(playlist_params)
     redirect_to @playlist
   end
 
@@ -16,9 +16,20 @@ class PlaylistsController < ApplicationController
     @playlist = Playlist.find(params[:id])
   end
 
+  def edit
+    @playlist = Playlist.find(params[:id])
+  end
+
+  def update
+    @playlist = Playlist.find(params[:id])
+    @playlist.update(playlist_params)
+
+    redirect_to playlist_path
+  end
+
   private
 
-  def playlsit_params
+  def playlist_params
     params.require(:playlist).permit(:name, song_ids: [])
   end
 end
